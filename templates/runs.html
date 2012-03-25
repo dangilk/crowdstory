@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Recent Runs{% endblock %}
+{% block body %}
+<div style="height:760px;position:relative">
+    <div  style="margin-top:10px;margin-left:25%;width:50%;text-align: center">
+        <a id="prev" style="">previous</a>
+    </div>
+    <div id="snips" style="height:210px;overflow: hidden;">
+        <div class="snip-div">
+            <span class="snip" style="display:none"> This is the first part of the story fdsfsafsdfdsfsdfs daffdsfasfdsf sdafdf afsafdfsd fsdfa fsdfdsf</span>
+        </div>
+
+        <div class="snip-div">
+            <span class="snip" style="display:none"> This is the first part of the story fdsfsafsdfdsfsdfs daffdsfasfdsf sdafdf afsafdfsd fsdfa fsdfdsf</span>
+        </div>
+
+        <div class="snip-div">
+
+            <span class="snip"> This is the first part of the story fdsfsafsdfdsfsdfs daffdsfasfdsf sdafdf afsafdfsd fsdfa fsdfdsf</span>
+        </div>
+    </div>
+    <textarea id="textarea" style="display:none;top:150px;position:absolute"> Write stuff here</textarea><br>
+    
+    <a id="left" style="float:left"><<<</a>
+    <a id="right" style="float:right">>>></a>
+
+    <div id="meta" style="margin-top:10px;margin-left:25%;width:50%;height:55px">
+            <img class='author' src="http://placehold.it/50x50">
+
+            <div style="display:inline-block;">
+                <span>by: some dude</span><br>
+                <a><img src="http://placehold.it/15x15">props</a><br>
+                <a><img src="http://placehold.it/15x15">blocks</a>
+
+            </div>
+    </div>
+
+    <div style="display:block;margin-top:20px;margin-left:25%;width:50%;text-align: center">
+        <a id="next" style="">next</a>
+        <a id="write">write</a>
+        <a style="display:none" id="continue">continue</a>
+    </div>
+
+</div>
+<a id="welcome-trigger" href="/welcome" style="display:none" class="fancybox fancybox.ajax"/>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function(){
+        $('#welcome-trigger').fancybox();
+        console.log('trigger click');
+        $('#welcome-trigger').trigger('click');
+        var $e = {};
+        $e.next = $('#next');
+        $e.prev = $('#prev');
+        $e.left = $('#left');
+        $e.right = $('#right');
+        $e.write = $('#write');
+        $e.textarea = $('#textarea');
+        $e.cont = $('#continue');
+        $e.snips = $('#snips');
+        $e.meta = $('#meta');
+        var p = {};
+        p.first_snips = {{ first_snips|safe }};
+        CS.Stories.init($e,p);
+        CS.Invite.init();
+    });
+
+    function cb(sum){
+        alert(sum);
+    }
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,21 @@
+application: crowdstory1
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /(.*\.(html|css|js|gif|jpg|png|ico))
+  static_files: static/\1
+  upload: static/.*
+  expiration: "0m"
+
+- url: /rpc.*
+  script: rpc.app
+
+- url: .*
+  script: main.app
+
+- url: /task/.*
+  script: main.app
+  login: admin

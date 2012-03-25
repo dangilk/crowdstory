@@ -1,0 +1,24 @@
+<div class="welcome">
+  <h1>Welcome to Crowdstory</h1>
+
+  <div class="info">
+    <p>
+      In Crowdstory, you tell stories with your friends!
+    </p>
+    <p>
+      Crowdstory is more fun with more friends! <a id="invite-friends">Invite yours now!</a>
+    </p>
+  </div>
+
+</div>
+<script>
+    $(document).ready(function(){
+        $e = {};
+        $e.invite = $('#invite-friends');
+        $e.invite.click(function(){
+            $.fancybox.close();
+            CS.Invite.send();
+        });
+    });
+</script>
+
